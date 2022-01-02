@@ -1,15 +1,23 @@
 
-import {Fragment} from "react";
+import {Fragment, useState} from "react";
 import Header from "./Components/Layout/Header/Header"
 import Meals from "./Components/Meals/Meals";
 import Cart from "./Components/Cart/Cart"
+
 function App() {
+  const [modalOpen,setModalOpen] = useState(false)
+  const openMadalHandler =()=>{
+    setModalOpen(true)
+  }
+  const closeMadalHandler =()=>{
+    setModalOpen(false)
+  }
   return (
     <Fragment>
-        <Header/>
+      {modalOpen && <Cart closeModal={closeMadalHandler}/>}
+        <Header openModal={openMadalHandler}/>
         <main>
           <Meals/>
-          <Cart/>
         </main>
     </Fragment>
   );
